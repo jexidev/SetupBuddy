@@ -1,11 +1,11 @@
 # intro
-Write-Host "`nWelcome to SetupBuddy a JexiDev creation!"
+Write-Host "`nWelcome to SetupBuddy - a JexiDev creation!"
 Write-Host "Taking you from chaos to install in a matter of clicks.`n"
 Write-Host "Step 1: Make sure all .rar/part files for your downloaded game are in the same folder.`n"
 
 
 do {
-    $targetFolder = Read-Host "Paste the full path to your game's setup folder:"
+    $targetFolder = Read-Host "Paste the full path to your game's setup folder"
     $targetFolder = $targetFolder.Trim() -replace '^"|"$', ''
     if (!(Test-Path $targetFolder)) {
         Write-Host "Folder not found. Please double-check and try again.`n"
@@ -29,7 +29,7 @@ function Get-WinRARPath {
 
 $winRARPath = Get-WinRARPath
 if (-not $winRARPath) {
-    Write-Host "WinRAR not found. Please install it from:"
+    Write-Host "WinRAR not found. Please install it from"
     Write-Host "https://www.rarlab.com/download.htm`n"
     Start-Process "https://www.rarlab.com/download.htm"
     Pause
