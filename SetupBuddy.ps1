@@ -14,85 +14,9 @@ do {
 
 Write-Host "Folder found. Commencing extraction process...`n"
 
-# WinRAR Check and Execution
-function Get-WinRARPath {
-    $defaultPaths = @(
-        "$env:ProgramFiles\WinRAR\WinRAR.exe",
-        "$env:ProgramFiles(x86)\WinRAR\WinRAR.exe",
-        "D:\Program Files\WinRAR\WinRAR.exe",
-        "D:\Program Files (x86)\WinRAR\WinRAR.exe"
-    )
-
-    foreach ($path in $defaultPaths) {
-        if (Test-Path $path) { return $path }
-    }
-
-    # Prompt user for manual path
-    Write-Host "`nWinRAR not found in default locations."
-    $manualPath = Read-Host "Enter your WinRAR.exe path manually or press Enter to download"
-    if ($manualPath -and (Test-Path $manualPath)) {
-        return $manualPath
-    }
-
-    # Offer download
-    Write-Host "`nYou can download WinRAR from the official site:"
-    Write-Host "https://www.rarlab.com/download.htm`n"
-    Start-Process "https://www.rarlab.com/download.htm"
-    Pause
-    exit
-}
-
-function Get-WinRARVersion($exePath) {
-    try {
-        $versionInfo = (Get-Item $exePath).VersionInfo
-        return $versionInfo.ProductVersion
-    } catch {
-        return $null
-    }
-}
-
-# Version Detection - Main Logic
-$winRARPath = Get-WinRARPath
-$winRARVersion = Get-WinRARVersion $winRARPath
-
-if (-not $winRARVersion) {
-    Write-Host "Could not determine WinRAR version. Please ensure it's up to date."
-    Pause
-    exit
-}
-
-# Compare version
-$requiredVersion = [Version]"7.13"
-$currentVersion = [Version]$winRARVersion
-
-if ($currentVersion -lt $requiredVersion) {
-    Write-Host "`nYour WinRAR version ($winRARVersion) is outdated and may be vulnerable."
-    Write-Host "Please update to version 7.13 or later:"
-    Write-Host "https://www.rarlab.com/download.htm`n"
-    Start-Process "https://www.rarlab.com/download.htm"
-    Pause
-    exit
-}
-
-Write-Host "`nWinRAR version $winRARVersion is up to date."
+# 7-zip Extraction Logic - Bundled
 
 
-# Add in Extracting... to run every X amount of seconds until process complete
-
-$rarFiles = Get-ChildItem -Path $targetFolder -Filter *.rar
-
-foreach ($file in $rarFiles) {
-    $fileName = $file.Name
-
-    if ($fileName -match "\.part0*1\.rar$" -or ($fileName -notmatch "\.part\d+\.rar$")) {
-        Write-Host "Extracting $fileName..."
-        $arguments = @("x", "`"$($file.FullName)`"", "`"$targetFolder`"")
-        Start-Process -FilePath $winRARPath -ArgumentList $arguments -Wait
-    }
-    else {
-        Write-Host "Skipping $fileName (handled by part1)"
-    }
-}
 
 # Handling the verification process
 Write-Host "Successful Extraction"
