@@ -1,6 +1,3 @@
-# Ignore WinRAR legacy folder
-Winrar Legacy Code.ps1/
-
 # Ignore bundled binaries
 Tools/7z.exe
 Tools/7z.dll
