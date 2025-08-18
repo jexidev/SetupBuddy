@@ -1,1 +1,12 @@
-\Winrar Legacy Code.ps1
+# Ignore WinRAR legacy folder
+Winrar Legacy Code/
+
+# Ignore bundled binaries
+tools/7z.exe
+tools/7z.dll
+
+# Ignore all .log files
+*.log
+
+# Ignore temp folders
+temp/
