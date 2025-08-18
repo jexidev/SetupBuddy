@@ -14,13 +14,52 @@ do {
 
 Write-Host "Folder found. Commencing extraction process...`n"
 
-# 7-zip Extraction Logic - Bundled
+# 7-Zip Detection Function
+function Get-7ZipPath {
+    $defaultPaths = @(
+        "$PSScriptRoot\Tools\7z.exe",
+        "$env:ProgramFiles\7-Zip\7z.exe",
+        "$env:ProgramFiles(x86)\7-Zip\7z.exe",
+        "D:\Program Files\7-Zip\7z.exe",
+        "D:\Program Files (x86)\7-Zip\7z.exe"
+    )
 
+    foreach ($path in $defaultPaths) {
+        if (Test-Path $path) { return $path }
+    }
 
+    Write-Host "`n7-Zip not found in default locations."
+    $manualPath = Read-Host "Enter your 7z.exe path manually or press Enter to download"
+    if ($manualPath -and (Test-Path $manualPath)) {
+        return $manualPath
+    }
 
-# Handling the verification process
-Write-Host "Successful Extraction"
-Write-Host "Now, lets get started with the verification`n"
+    Write-Host "`nYou can download 7-Zip from the official site:"
+    Write-Host "https://www.7-zip.org/download.html`n"
+    Start-Process "https://www.7-zip.org/download.html"
+    Pause
+    exit
+}
+
+# Resolve 7-Zip path
+$sevenZipPath = Get-7ZipPath
+
+# Extraction Logic
+$rarFiles = Get-ChildItem -Path $targetFolder -Filter *.rar
+
+foreach ($file in $rarFiles) {
+    $fileName = $file.Name
+
+    if ($fileName -match "\.part0*1\.rar$" -or ($fileName -notmatch "\.part\d+\.rar$")) {
+        Write-Host "Extracting $fileName..."
+        $arguments = @("x", "`"$($file.FullName)`"", "-o`"$targetFolder`"", "-y")
+        Start-Process -FilePath $sevenZipPath -ArgumentList $arguments -Wait
+    }
+    else {
+        Write-Host "Skipping $fileName (handled by part1)"
+    }
+}
+
 
 $verifyBat = Join-Path $targetFolder "Verify BIN files before installation.bat"
 
