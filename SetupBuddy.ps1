@@ -60,16 +60,24 @@ foreach ($file in $rarFiles) {
     }
 }
 
+# Verify BIN files before installation.bat
 
-$verifyBat = Join-Path $targetFolder "Verify BIN files before installation.bat"
+$verifyBat = Join-Path $targetFolder "Verify BIN files before install.bat"
+$md5Folder = Join-Path $targetFolder "MD5"
+$quickSFV = Join-Path $md5Folder "QuickSFV.exe"
+$md5File  = Join-Path $md5Folder "fitgirl-bins.md5"
 
 Write-Host "`nSuccessful Extraction"
-Write-Host "Now, lets get started with the verification..."
+Write-Host "Now, let's get started with the verification..."
 
 if (Test-Path $verifyBat) {
     Start-Process $verifyBat -NoNewWindow -Wait
-} else {
-    Write-Host "Verification script not found. Please check your setup folder."
+}
+elseif (Test-Path $quickSFV -and (Test-Path $md5File)) {
+    Start-Process -FilePath $quickSFV -ArgumentList "`"$md5File`"" -NoNewWindow
+}
+else {
+    Write-Host "No verification method found. Please check your setup folder."
     exit
 }
 
