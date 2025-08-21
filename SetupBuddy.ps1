@@ -62,7 +62,7 @@ foreach ($file in $rarFiles) {
 
 # Verify BIN files before installation.bat
 
-$verifyBat = Join-Path $targetFolder "Verify BIN files before install.bat"
+$verifyBat = Join-Path $targetFolder "Verify BIN files before installation.bat"
 $md5Folder = Join-Path $targetFolder "MD5"
 $quickSFV = Join-Path $md5Folder "QuickSFV.exe"
 $md5File  = Join-Path $md5Folder "fitgirl-bins.md5"
@@ -103,3 +103,8 @@ if ($userInput -match '^[Yy]$') {
     Write-Host "Setup aborted by user. You can run setup.exe munaually later if needed."
     exit
 }
+
+Start-Sleep -Seconds 2
+Write-Host "`nSetup complete!"
+Write-Host "If you found this helpful and wish to support future gamer-driven projects,"
+Write-Host "you can buy me a coffee here: https://ko-fi.com/jexidev"
