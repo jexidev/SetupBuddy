@@ -1,6 +1,6 @@
-# 🧙‍♂️ SetupBuddy (WIP)
+# 🧙‍♂️ SetupBuddy - Your Install-Sidekick
 
-**SetupBuddy** is your install-sidekick, built to streamline the chaos of game mod setups, bin file wrangling, and post-download confusion. Born from the humble frustrations of _"great, now I need to copy all these bin files to the setup folder"_, it’s the evolved form of **BinSnatcher** — now with direct download support, extraction, and setup launching.
+**SetupBuddy** is a powerful PowerShell script built to streamline the chaos of game setups, file management, and post-download confusion. Tired of wrangling fragmented archives and hunting for setup files? SetupBuddy is the evolved form of **BinSnatcher**, now with direct extraction, verification and automated setup launching.
 
 ---
 
@@ -8,45 +8,46 @@
 
 SetupBuddy handles:
 
-- ✅ **Direct download** of required files (bins, zips, etc.)
-- 📦 **Extraction** of archives (RAR/ZIP/7z) with WinRAR integration
-- 🧩 **Folder hygiene** — auto-creates setup folders, verifies contents
-- 🧠 **Smart launching** — runs `setup.exe` with basic error handling
-- 🔍 **User prompts** — fallback options if something’s missing
+- ✅  **Automated Extraction:** Finds and extracts multi-part archives (RAR/ZIP/7z) in a single folder.
+- 📦  **Tool-Included:** Comes with a pre-packaged copy of 7-Zip, so you don't need to install anything else.
+- 🧠  **Smart Launching:** Automatically finds and runs `setup.exe` with basic error handling.
+- 🔍  **User Guidance:** Provides clear prompts and fallback options if a file is missing.
 
 ---
 
-## 🛠️ Requirements
+### 🛠️ Requirements
 
-- Windows 10/11  
-- PowerShell 5+  
-- [WinRAR](https://www.rarlab.com/download.htm) installed and up to date (v7.13+ recommended)
+* **Windows 10/11**
+* **PowerShell 5+**
 
-If WinRAR isn’t found, SetupBuddy will prompt you to install or manually locate it.
+SetupBuddy is designed to be as simple as possible. It includes the necessary tools, so there are no other external requirements. Just download and run.
 
 ---
 
 ## 🧪 How to Run (Trial Mode)
 
-If your execution policy blocks scripts:
+1.  **Download:** Grab the latest version from this repository.
+2.  **Unzip:** Extract the contents to your desired location.
+3.  **Run:** Open a PowerShell terminal and navigate to the extracted folder. Run the script with one of these commands:
 
-powershell -ExecutionPolicy Bypass -File "SetupBuddy.ps1"
-
-Or elevate with:
-
-Start-Process powershell -Verb RunAs -ArgumentList '-ExecutionPolicy Bypass -File "SetupBuddy.ps1"'
+    If your execution policy blocks scripts:
+    ```powershell
+    powershell -ExecutionPolicy Bypass -File "SetupBuddy.ps1"
+    ```
+    Or elevate with:
+    ```powershell
+    Start-Process powershell -Verb RunAs -ArgumentList '-ExecutionPolicy Bypass -File "SetupBuddy.ps1"'
+    ```
 
 ---
 
 ## 💡 Why SetupBuddy Exists
 
-SetupBuddy was built to simplify the install process and empower users with tools that just work.
+SetupBuddy was built to simplify the install process and empower users with tools that just work. It's designed for:
 
-It’s designed for:
-
-- 🎮 **Gamers** who want clean, hassle-free installs  
-- 🛠️ **Modders** who support others and maintain setups  
-- 🌐 **Communities** that value clarity, consistency, and ease of use
+- 🎮  **Gamers** who want clean, hassle-free installs.
+- 🛠️  **Modders** who support others and maintain setups.
+- 🌐  **Communities** that value clarity, consistency, and ease of use.
 
 ---
 
@@ -54,10 +55,10 @@ It’s designed for:
 
 SetupBuddy is still evolving. Here's what's on the roadmap:
 
-- 🔐 **Discord-integrated support flow** — safe, filtered contact and ticketing  
-- 🧱 **Modular install profiles** — tailored setups for different games and tools  
-- 💬 **Interactive prompts** — fallback options and guided decisions  
-- 🧼 **Setup folder hygiene checks** — smarter file placement and cleanup
+- 🔐  **Discord-integrated support flow:** Safe, filtered contact and ticketing
+- 🧱  **Modular install profiles:** Tailored setups for different games and tools
+- 💬  **Interactive prompts:** Fallback options and guided decisions
+- 🧼  **Setup folder hygiene checks:** Smarter file placement and cleanup
 
 ---
 
@@ -68,3 +69,8 @@ SetupBuddy is a work in progress — your feedback helps shape it.
 - ☕ [Support me on Ko-fi](https://ko-fi.com/jexidev)  
 - 🧑‍💻 [Explore my GitHub projects](https://github.com/JexiDev)  
 - 💬 Reach out via Discord (filtered contact channel coming soon)
+
+## 🧠 Credits
+Created by JexiDev
+
+Built with empathy, speed, and a touch of chaos.
