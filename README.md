@@ -26,12 +26,14 @@ SetupBuddy is frictionless, which is why the necessary tools are included, meani
 2. **Running:** First, try right-clicking the .ps1 file and hitting "run in PowerShell". 
 
 Alternatively, If your execution policy blocks scripts:
-    ```powershell
+```powershell
     powershell -ExecutionPolicy Bypass -File "SetupBuddy.ps1"
-    ```
+```
+
     Or elevate with:
-    ```powershell
+
+```powershell
     Start-Process powershell -Verb RunAs -ArgumentList '-ExecutionPolicy Bypass -File "SetupBuddy.ps1"'
-    ```
+```
 
 **Created by JexiDev**
