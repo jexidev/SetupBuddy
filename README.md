@@ -30,7 +30,7 @@ Alternatively, If your execution policy blocks scripts:
     powershell -ExecutionPolicy Bypass -File "SetupBuddy.ps1"
 ```
 
-    Or elevate with:
+ Or elevate with:
 
 ```powershell
     Start-Process powershell -Verb RunAs -ArgumentList '-ExecutionPolicy Bypass -File "SetupBuddy.ps1"'
